@@ -15,6 +15,7 @@ const AddMember = () => {
         aim: ''
     });
     const [image, setImage] = useState(null);
+    const [preview, setPreview] = useState(null);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -22,7 +23,11 @@ const AddMember = () => {
     };
 
     const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
+        const file = e.target.files[0];
+        setImage(file);
+        if (file) {
+            setPreview(URL.createObjectURL(file));
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -49,50 +54,72 @@ const AddMember = () => {
 
     return (
         <div className="container">
-            <h2>Add Team Member</h2>
+            <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                <h2 style={{ fontSize: '2.5rem', fontWeight: '800' }}>Onboard New Talent</h2>
+                <p style={{ color: 'var(--text-muted)' }}>Expand the Droidbots roster with fresh expertise.</p>
+            </header>
+
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label>Full Name</label>
-                        <input type="text" name="name" onChange={handleChange} required />
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                        <div className="form-group">
+                            <label>Full Name</label>
+                            <input type="text" name="name" onChange={handleChange} placeholder="e.g. John Doe" required />
+                        </div>
+                        <div className="form-group">
+                            <label>Roll Number</label>
+                            <input type="text" name="rollNumber" onChange={handleChange} placeholder="e.g. 21BCS1234" required />
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label>Roll Number</label>
-                        <input type="text" name="rollNumber" onChange={handleChange} required />
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                        <div className="form-group">
+                            <label>Year of Study</label>
+                            <input type="text" name="year" onChange={handleChange} placeholder="e.g. 3rd Year" required />
+                        </div>
+                        <div className="form-group">
+                            <label>Degree</label>
+                            <input type="text" name="degree" onChange={handleChange} placeholder="e.g. B.Tech CSE" required />
+                        </div>
                     </div>
+
                     <div className="form-group">
-                        <label>Year</label>
-                        <input type="text" name="year" onChange={handleChange} required />
+                        <label>Major Project</label>
+                        <textarea name="project" onChange={handleChange} placeholder="Describe your primary project..." rows="3" required></textarea>
                     </div>
+
                     <div className="form-group">
-                        <label>Degree</label>
-                        <input type="text" name="degree" onChange={handleChange} required />
+                        <label>Hobbies</label>
+                        <input type="text" name="hobbies" onChange={handleChange} placeholder="Coding, Robotics, Gaming..." required />
                     </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                        <div className="form-group">
+                            <label>Key Certification</label>
+                            <input type="text" name="certificate" onChange={handleChange} placeholder="e.g. AWS Cloud Practitioner" required />
+                        </div>
+                        <div className="form-group">
+                            <label>Recent Internship</label>
+                            <input type="text" name="internship" onChange={handleChange} placeholder="e.g. Google Summer of Code" required />
+                        </div>
+                    </div>
+
                     <div className="form-group">
-                        <label>About Project</label>
-                        <textarea name="project" onChange={handleChange} required></textarea>
+                        <label>Professional Aim</label>
+                        <textarea name="aim" onChange={handleChange} placeholder="What are your career goals?" rows="3" required></textarea>
                     </div>
+
                     <div className="form-group">
-                        <label>Hobbies (comma separated)</label>
-                        <input type="text" name="hobbies" onChange={handleChange} required />
+                        <label>Profile Portrait</label>
+                        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                            <input type="file" onChange={handleImageChange} required style={{ flex: 1 }} />
+                            {preview && <img src={preview} alt="Preview" style={{ width: '60px', height: '60px', borderRadius: '12px', objectFit: 'cover', border: '2px solid var(--primary)' }} />}
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label>Certificate</label>
-                        <input type="text" name="certificate" onChange={handleChange} required />
-                    </div>
-                    <div className="form-group">
-                        <label>Internship</label>
-                        <input type="text" name="internship" onChange={handleChange} required />
-                    </div>
-                    <div className="form-group">
-                        <label>About Your Aim</label>
-                        <textarea name="aim" onChange={handleChange} required></textarea>
-                    </div>
-                    <div className="form-group">
-                        <label>Profile Image</label>
-                        <input type="file" onChange={handleImageChange} required />
-                    </div>
-                    <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>SUBMIT</button>
+
+                    <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', height: '3.5rem', fontSize: '1.1rem' }}>
+                        Confirm Onboarding
+                    </button>
                 </form>
             </div>
         </div>
@@ -100,3 +127,4 @@ const AddMember = () => {
 };
 
 export default AddMember;
+
