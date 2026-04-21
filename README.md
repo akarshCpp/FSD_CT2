@@ -55,8 +55,8 @@ FSD_CT2/
 | Name | Role | Profile |
 | --- | --- | --- |
 | **Akarsh Anubhav** | Lead Developer | [Profile](https://github.com/akarshCpp) |
-| **Jay Kumar** | Full Stack Developer | [Profile](#) |
-| **Shikhar Shukla** | UI/UX Specialist | [Profile](#) |
+| **Jay Kumar** | Full Stack Developer | [Profile](https://github.com/jk7145) |
+| **Shikhar Shukla** | UI/UX Specialist | [Profile](https://github.com/shikharshuklaa) |
 
 ---
 
